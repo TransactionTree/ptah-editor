@@ -14,7 +14,7 @@
             size="small"
             @click="skipSteps"
           >
-            Skip tour
+            Skip step
           </base-button>
         </div>
         <div>

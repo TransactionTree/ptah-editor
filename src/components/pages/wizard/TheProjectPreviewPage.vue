@@ -1,6 +1,6 @@
 <template>
   <div class="b-project-preview">
-    <div class="b-project-preview__content">
+    <div class="b-project-preview__content" v-if="preset">
       <div class="b-project-preview__template">
         <base-scroll-container>
           <img :src="preset.preview" style="width: 100%" />

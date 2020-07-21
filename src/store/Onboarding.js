@@ -119,9 +119,13 @@ export default {
     },
 
     resetState (state) {
-      for (let prop in state) {
-        state[prop] = defaultState[prop]
-      }
+      state.logo = ''
+      state.background = ''
+      state.backgroundColor = '#fafafa'
+      state.firstScreen = ''
+      state.colors = COLORS
+      state.fonts = FONTS
+      state.setupFonts = SETUP_FONTS
     },
 
     setLoading (state, value) {
