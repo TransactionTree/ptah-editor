@@ -155,6 +155,24 @@ export default {
     }
   },
 
+  created () {
+    this.setActiveStep('colors')
+  },
+
+  mounted () {
+    if (this.palette !== null) {
+      this.applyPalette()
+    } else {
+      this.deactivateCheckListItem('colors')
+    }
+
+    try {
+      this.$gtag.event('Wizard_colors', { 'event_category': 'LANDING' })
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
   methods: {
     ...mapActions('Onboarding', [
       'activateCheckListItem',
@@ -199,24 +217,6 @@ export default {
 
     skipSteps () {
       this.$emit('skipSteps')
-    }
-  },
-
-  created () {
-    this.setActiveStep('colors')
-  },
-
-  mounted () {
-    if (this.palette !== null) {
-      this.applyPalette()
-    } else {
-      this.deactivateCheckListItem('colors')
-    }
-
-    try {
-      this.$gtag.event('Wizard_colors', { 'event_category': 'LANDING' })
-    } catch (e) {
-      console.log(e)
     }
   }
 }
