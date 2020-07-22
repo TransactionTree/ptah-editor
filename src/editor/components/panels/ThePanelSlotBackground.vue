@@ -14,7 +14,7 @@
               <base-caption help="Section's background image" v-if="!isMobile">
                 Background image
               </base-caption>
-              <base-caption help="Section's background position" v-if="isMobile">
+              <base-caption help="Section's background position" v-if="sectionBgUrl !== '' && sectionBgUrl !== null && isMobile">
                 Background position
               </base-caption>
               <div class="b-panel__col">
@@ -30,8 +30,9 @@
                 </template>
 
                 <div class="b-panel__picker"
-                     v-for="(picker, index) in backgroundPickers"
-                     :key="`picker-item-${ _uid }-${ index }`"
+                 v-if="!isMobile"
+                 v-for="(picker, index) in backgroundPickers"
+                 :key="`picker-item-${ _uid }-${ index }`"
                 >
                   <base-color-picker
                     v-model="backgroundPickers[index]"
@@ -68,6 +69,9 @@
                 </div>
               </div>
             </div>
+            <disabled-mobile-mode
+              v-if="(sectionBgUrl === '' || sectionBgUrl === null) && isMobile"
+            />
           </div>
         </base-scroll-container>
       </div>
@@ -81,6 +85,7 @@ import * as _ from 'lodash-es'
 import BaseUploader from '../../../components/base/BaseUploader'
 import ControlBackgroundPosition from './../controls/TheControlBackgroundPosition'
 import IndicatorPlatform from '../IndicatorPlatform'
+import DisabledMobileMode from '../DisabledMobileMode'
 
 const DEFAULT_COLOR = 'rgba(0,0,0,1)'
 
@@ -97,7 +102,8 @@ export default {
   components: {
     IndicatorPlatform,
     BaseUploader,
-    ControlBackgroundPosition
+    ControlBackgroundPosition,
+    DisabledMobileMode
   },
 
   props: {
