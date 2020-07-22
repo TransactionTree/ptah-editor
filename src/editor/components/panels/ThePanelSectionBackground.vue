@@ -66,20 +66,23 @@
 
             </div>
             <div class="b-panel__control">
-              <base-caption help="Section's background image">
-                  Background image
+              <base-caption help="Section's background image" v-if="!isMobile">
+                Background image
               </base-caption>
-              <div class="b-panel__col">
+              <base-caption help="Section's background position" v-if="isMobile">
+                Background position
+              </base-caption>
+              <div class="b-panel__col" v-if="!isMobile">
                 <base-uploader
                   v-model="sectionBgUrl"
                   @change="updateBgUrl"
                   label="Image"
                   type="image"
                 />
-                <template v-if="sectionBgUrl !== '' && sectionBgUrl !== null">
-                  <control-background-position/>
-                </template>
               </div>
+              <template v-if="sectionBgUrl !== '' && sectionBgUrl !== null">
+                <control-background-position/>
+              </template>
             </div>
             <div class="b-panel__control">
               <div class="b-panel__control">
@@ -346,8 +349,8 @@ export default {
       let image = ''
       let bgimage = ''
 
-      image = (!!styles['background-image'] && typeof styles['background-image'] === 'string') ?
-        styles['background-image'] : ''
+      image = (!!this.styles['background-image'] && typeof this.styles['background-image'] === 'string') ?
+        this.styles['background-image'] : ''
 
       bgimage = image.match(/url\((.*?)\)/)
 
@@ -377,7 +380,7 @@ export default {
       this.isParallax = this.parallax
     },
 
-    updateBgColor (value) {
+    updateBgColor () {
       let pickers = this.backgroundPickers
       let bgimage = this.sectionBgUrl
       let styles = { 'background-color': '' }

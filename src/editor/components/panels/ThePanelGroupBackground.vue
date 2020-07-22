@@ -18,11 +18,15 @@
         <base-scroll-container>
           <div class="layout-padding">
             <div class="b-panel__control">
-              <base-caption help="Section's background image">
+              <base-caption help="Section's background image" v-if="!isMobile">
                 Background image
+              </base-caption>
+              <base-caption help="Section's background position" v-if="isMobile">
+                Background position
               </base-caption>
               <div class="b-panel__col">
                 <base-uploader
+                  v-if="!isMobile"
                   v-model="sectionBgUrl"
                   @change="updateBgUrl"
                   label="Image"
@@ -328,8 +332,8 @@ export default {
       let image = ''
       let bgimage = ''
 
-      image = (!!styles['background-image'] && typeof styles['background-image'] === 'string') ?
-        styles['background-image'] : ''
+      image = (!!this.styles['background-image'] && typeof this.styles['background-image'] === 'string') ?
+        this.styles['background-image'] : ''
 
       bgimage = image.match(/url\((.*?)\)/)
 
