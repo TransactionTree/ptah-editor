@@ -204,6 +204,14 @@ export default {
 
   created () {
     this.setActiveStep('colors')
+  },
+
+  mounted () {
+    if (this.palette !== null) {
+      this.applyPalette()
+    } else {
+      this.deactivateCheckListItem('colors')
+    }
   }
 }
 </script>

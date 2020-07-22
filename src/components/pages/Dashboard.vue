@@ -44,6 +44,10 @@ export default {
       'resetState'
     ]),
 
+    ...mapActions('Onboarding', [
+      'deactivateCheckList'
+    ]),
+
     openLanding (item) {
       // add log
       this.$Progress.start()
@@ -57,6 +61,7 @@ export default {
 
     openWindow () {
       this.$nextTick(() => {
+        this.deactivateCheckList()
         this.resetState()
         this.$router.push({ path: `/dashboard/wizard/name` })
       })

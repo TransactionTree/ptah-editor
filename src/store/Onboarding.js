@@ -124,6 +124,7 @@ export default {
       state.backgroundColor = '#fafafa'
       state.firstScreen = ''
       state.colors = COLORS
+      state.palette = null
       state.fonts = FONTS
       state.setupFonts = SETUP_FONTS
     },
@@ -140,6 +141,12 @@ export default {
 
     deactivateCheckListItem ({ state, commit }, item) {
       commit('deactivateCheckListItem', item)
+    },
+
+    deactivateCheckList ({ state, commit }) {
+      Object.keys(state.checkList).forEach((key, index) => {
+        commit('deactivateCheckListItem', key)
+      })
     },
 
     updateColors ({ state, commit }, palette) {

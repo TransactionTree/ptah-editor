@@ -62,6 +62,10 @@ export default {
 
   created () {
     this.setActiveStep('background')
+  },
+
+  mounted () {
+    this.uploadBackground(this.background)
   }
 }
 </script>

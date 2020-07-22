@@ -61,6 +61,10 @@ export default {
 
   created () {
     this.setActiveStep('logo')
+  },
+
+  mounted () {
+    this.uploadLogo(this.logo)
   }
 }
 </script>

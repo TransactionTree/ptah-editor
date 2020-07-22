@@ -62,6 +62,11 @@ export default {
 
   created () {
     this.setActiveStep('firstScreen')
+    this.deactivateCheckListItem('firstScreen')
+  },
+
+  mounted () {
+    this.uploadBackground(this.firstScreen)
   }
 }
 </script>

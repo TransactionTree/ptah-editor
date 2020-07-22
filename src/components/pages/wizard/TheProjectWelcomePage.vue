@@ -26,7 +26,7 @@
           @click="skipSteps"
           :disabled="skip"
         >
-          Skip step
+          Skip tour
         </base-button>
       </div>
     </div>
