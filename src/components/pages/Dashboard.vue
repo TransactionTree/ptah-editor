@@ -60,6 +60,12 @@ export default {
     },
 
     openWindow () {
+      try {
+        this.$gtag.event('Click_create', { 'event_category': 'LANDING' })
+      } catch (e) {
+        console.log(e)
+      }
+
       this.$nextTick(() => {
         this.deactivateCheckList()
         this.resetState()
@@ -88,7 +94,7 @@ export default {
         })
           .then((response) => {
             try {
-              this.$gtag.event('Click_create', { 'event_category': 'LANDING' })
+              this.$gtag.event('Create_complete', { 'event_category': 'LANDING' })
             } catch (e) {
               console.log(e)
             }
