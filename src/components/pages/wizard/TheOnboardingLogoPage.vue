@@ -35,6 +35,7 @@ export default {
       'logo'
     ])
   },
+
   methods: {
     ...mapActions('Onboarding', [
       'activateCheckListItem',
@@ -65,6 +66,12 @@ export default {
 
   mounted () {
     this.uploadLogo(this.logo)
+
+    try {
+      this.$gtag.event('Wizard_logo', { 'event_category': 'LANDING' })
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 </script>

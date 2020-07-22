@@ -212,6 +212,12 @@ export default {
     } else {
       this.deactivateCheckListItem('colors')
     }
+
+    try {
+      this.$gtag.event('Wizard_colors', { 'event_category': 'LANDING' })
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 </script>

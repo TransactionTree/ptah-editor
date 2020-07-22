@@ -66,6 +66,12 @@ export default {
 
   mounted () {
     this.uploadBackground(this.background)
+
+    try {
+      this.$gtag.event('Wizard_background', { 'event_category': 'LANDING' })
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 </script>

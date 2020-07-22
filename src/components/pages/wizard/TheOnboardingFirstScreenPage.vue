@@ -62,11 +62,15 @@ export default {
 
   created () {
     this.setActiveStep('firstScreen')
-    this.deactivateCheckListItem('firstScreen')
   },
 
   mounted () {
     this.uploadBackground(this.firstScreen)
+    try {
+      this.$gtag.event('Wizard_firstScreen', { 'event_category': 'LANDING' })
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 </script>
