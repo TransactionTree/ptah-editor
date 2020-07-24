@@ -342,8 +342,6 @@ export default {
         }
       })
 
-      console.log(this.favicon)
-
       const data = {
         title: this.pageTitle,
         favicon: this.favicon,
