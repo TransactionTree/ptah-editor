@@ -1,7 +1,6 @@
 import Draggable from 'vuedraggable'
 import { mapActions } from 'vuex'
 import forEach from 'lodash-es/forEach'
-import { randomPoneId } from '../../editor/util'
 
 export default {
   components: {
@@ -86,8 +85,6 @@ export default {
       if (video && video.length) {
         this.changeVideo(video)
       }
-
-      this.setElementsId()
     },
 
     $_dragStop (event) {
@@ -202,18 +199,6 @@ export default {
         this.$vnode.tag.indexOf('Header') === -1) {
         this.$sectionData.mainStyle.styles['background-color'] = 'rgba(0,0,0,0)'
       }
-    },
-
-    setElementsId () {
-      forEach(this.$sectionData, (value, key) => {
-        if (key.indexOf('components') > -1) {
-          value.forEach((element, index) => {
-            if (element.id === null) {
-              this.$section.set(`$sectionData.${key}[${index}].element.id`, randomPoneId())
-            }
-          })
-        }
-      })
     }
   }
 }
