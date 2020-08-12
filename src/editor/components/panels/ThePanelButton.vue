@@ -9,7 +9,7 @@
     <base-scroll-container backgroundBar="#999">
       <div class="b-panel__inner">
 
-        <!-- Typography -->
+        <!-- Button Id -->
         <div class="b-panel__control">
           <control-id />
         </div>
