@@ -29,6 +29,10 @@
             <base-caption>
               Add library
             </base-caption>
+            <hint-block
+              class="hintBlock"
+              text="Please, add JS libraries (for example, jquery) by listing their URLs below"
+            />
             <div class="b-panel__col">
               <div class="b-lib-row" v-for="(lib, index) in libs"
                 :key="index"
@@ -38,7 +42,7 @@
                   v-model="libs[index]"
                   :hasError="errors[index]"
                   errorText="Invalid url"
-                  placeholder="Enter url"
+                  placeholder="Script url (like https://code.jquery.com/jquery-3.5.1.js)"
                   @input="valid(index)"
                 />
                 <div class="b-lib-row__buttons">
@@ -116,11 +120,13 @@
 import { mapState, mapActions } from 'vuex'
 import BuilderModalContentLayout from './BuilderModalContentLayout'
 import { isValidUrl } from '@editor/util'
+import HintBlock from './HintBlock'
 
 export default {
   name: 'BuilderSiteSettingsAddJsScripts',
 
   components: {
+    HintBlock,
     BuilderModalContentLayout
   },
 
@@ -279,4 +285,7 @@ export default {
       border: 0.2rem solid $main-green
       & svg
         fill: $main-green
+
+.hintBlock
+  margin-bottom: 2rem
 </style>
