@@ -1,5 +1,8 @@
 <template>
-  <div class="b-text is-editable b-border" ref="text" @click.stop.stop=""
+  <div class="b-text is-editable b-border"
+    :class="{ 'customColor' : customColor}"
+    ref="text"
+    @click.stop.stop=""
     :path="path"
     :style="[objVarsMedia, objVarsTypo]"
     @mouseleave="mouseleave"
@@ -167,6 +170,10 @@ export default {
 
     currentEl () {
       return this.$refs.text
+    },
+
+    customColor () {
+      return this.settingObjectOptions.customColor
     },
 
     refName () {
