@@ -1,6 +1,5 @@
 <template>
   <div class="b-text is-editable b-border"
-    :class="{ 'customColor' : customColor}"
     ref="text"
     @click.stop.stop=""
     :path="path"
@@ -170,10 +169,6 @@ export default {
 
     currentEl () {
       return this.$refs.text
-    },
-
-    customColor () {
-      return this.settingObjectOptions.customColor
     },
 
     refName () {

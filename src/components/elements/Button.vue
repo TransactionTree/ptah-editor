@@ -1,6 +1,5 @@
 <template>
   <a class="b-button is-editable"
-     :class="{ 'customColor' : customColor}"
      ref="btn"
      @click.stop.prevent
      :path="path"
@@ -192,10 +191,6 @@ export default {
 
     buttonId () {
       return this.settingObjectOptions.id
-    },
-
-    customColor () {
-      return this.settingObjectOptions.customColor
     },
 
     savePath () {

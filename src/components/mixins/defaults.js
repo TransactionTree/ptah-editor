@@ -38,47 +38,9 @@ export default {
       }
     },
 
-    '$store.state.currentLanding.settings.colors.headers': {
-      handler (value, old) {
-        if (value !== old) {
-          this.changeColors()
-        }
-      },
-      deep: true
-    },
-
-    '$store.state.currentLanding.settings.colors.text': {
-      handler (value, old) {
-        if (value !== old) {
-          this.changeColors()
-        }
-      },
-      deep: true
-    },
-
-    '$store.state.currentLanding.settings.colors.button': {
-      handler (value, old) {
-        if (value !== old) {
-          this.changeColors()
-        }
-      },
-      deep: true
-    },
-
-    '$store.state.currentLanding.settings.colors.buttonText': {
-      handler (value, old) {
-        if (value !== old) {
-          this.changeColors()
-        }
-      },
-      deep: true
-    },
-
-    '$store.state.currentLanding.settings.colors.buttonHover': {
-      handler (value, old) {
-        if (value !== old) {
-          this.changeColors()
-        }
+    '$store.state.currentLanding.settings.colors': {
+      handler () {
+        this.changeColors()
       },
       deep: true
     }
