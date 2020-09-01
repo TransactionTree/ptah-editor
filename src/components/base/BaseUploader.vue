@@ -13,6 +13,7 @@
           @remove="removeFile(index)"
           @labelProgress="labelChange"
           @getInputSrcFiles="getInputSrcFiles"
+          @showLibrary="isShow = true"
           />
       </draggable>
     </div>
@@ -28,7 +29,8 @@
           @remove="removeSrc"
           @labelProgress="labelChange"
           @getInputSrcFiles="getInputSrcFiles"
-         />
+          @showLibrary="isShow = true"
+        />
         <base-uploader-item-new
           v-if="hasAddMore"
           :multiple="multiple"
@@ -38,6 +40,7 @@
           @add="addFile"
           @labelProgress="labelChange"
           @getInputSrcFiles="getInputSrcFiles"
+          @showLibrary="isShow = true"
         />
       </div>
     </div>
@@ -53,7 +56,8 @@
           @remove="removeSrc"
           @labelProgress="labelChange"
           @getInputSrcFiles="getInputSrcFiles"
-          />
+          @showLibrary="isShow = true"
+        />
         <base-uploader-item-new
           v-if="hasAddMore"
           :multiple="multiple"
@@ -63,22 +67,37 @@
           @add="addFile"
           @labelProgress="labelChange"
           @getInputSrcFiles="getInputSrcFiles"
-          />
+          @showLibrary="isShow = true"
+        />
       </div>
     </div>
+
+    <ImagesLibrary
+      :type="type"
+      :accept="accept"
+      v-if="isShowImageLibrary && isShow"
+      @close="closeImageGallery"
+      @select="selectedImageInGallery"
+      :src="src"
+    />
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash-es'
+import ImagesLibrary from '../../editor/components/modals/TheImagesLibrary'
 
 const VALID_TYPES = ['image', 'video']
 
 export default {
   name: 'BaseUploader',
 
-  components: { Draggable },
+  components: {
+    Draggable,
+    ImagesLibrary
+  },
 
   props: {
     value: [Array, String],
@@ -89,6 +108,10 @@ export default {
       type: String,
       default: VALID_TYPES[0],
       validator: value => VALID_TYPES.includes(value)
+    },
+    accept: {
+      type: String,
+      default: 'image/*'
     }
   },
 
@@ -96,11 +119,15 @@ export default {
     return {
       src: null,
       items: [],
-      labelUploader: ''
+      labelUploader: '',
+      selectedElement: null,
+      isShow: false
     }
   },
 
   computed: {
+    ...mapState('Sidebar', ['isShowImageLibrary']),
+
     hasAddMore () {
       if (this.multiple) {
         return true
@@ -133,6 +160,8 @@ export default {
   },
 
   methods: {
+    ...mapActions('Sidebar', ['toggleShowImageLibrary']),
+
     addFile (file) {
       if (this.multiple) {
         this.items.push(file)
@@ -163,6 +192,17 @@ export default {
 
     getInputSrcFiles (value) {
       this.$emit('getInputSrcFiles', value)
+    },
+
+    selectedImageInGallery (value) {
+      this.src = value
+      this.$emit('getInputSrcFiles', value)
+      this.closeImageGallery()
+    },
+
+    closeImageGallery () {
+      this.isShow = false
+      this.toggleShowImageLibrary(false)
     }
   }
 }

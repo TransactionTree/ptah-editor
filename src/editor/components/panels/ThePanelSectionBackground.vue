@@ -156,6 +156,7 @@
                 @upload="uploadVideo"
                 label="Video"
                 type="video"
+                accept="video/mp4,video/x-m4v,video/*"
               />
             </div>
             <div class="b-panel__control" v-if="!isMobile">

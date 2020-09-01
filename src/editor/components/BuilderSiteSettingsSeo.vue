@@ -125,6 +125,7 @@
                     v-model="ogField.value"
                     label="Video"
                     type="video"
+                    accept="video/mp4,video/x-m4v,video/*"
                   />
                 </div>
               </div>

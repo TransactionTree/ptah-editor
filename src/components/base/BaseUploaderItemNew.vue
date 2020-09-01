@@ -40,7 +40,7 @@
              v-else>
           <IconBase name="downloadCloud" width="32" height="22" color="#00ADB6" />
 
-          <div>Upload file</div>
+          <div>Drag and drop</div>
 
           <input
             :multiple="multiple"
@@ -122,6 +122,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import RadialProgressBar from 'vue-radial-progress'
 import * as _ from 'lodash-es'
 import { getCookie } from '@editor/util'
@@ -140,6 +141,10 @@ export default {
   },
 
   props: {
+    target: {
+      type: String,
+      default: 'library'
+    },
     item: Object,
     multiple: Boolean,
     src: String,
@@ -182,6 +187,8 @@ export default {
   },
 
   methods: {
+    ...mapActions('Sidebar', ['toggleShowImageLibrary']),
+
     async getFileData (file) {
       this.progress = 0
       return new Promise((resolve, reject) => {
@@ -265,7 +272,12 @@ export default {
     },
 
     onClick () {
-      this.$refs.input.click()
+      if (this.target === 'library') {
+        this.toggleShowImageLibrary(true)
+        this.$emit('showLibrary')
+      } else {
+        this.$refs.input.click()
+      }
     },
 
     onInput (value) {
